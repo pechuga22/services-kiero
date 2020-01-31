@@ -1,6 +1,8 @@
 from flask import Flask
 import pyodbc
 import json
+from flask import request
+
 conn = pyodbc.connect('DRIVER={PostgreSQL Unicode};SERVER=10.4.28.183;DATABASE=postgres;UID=postgres;PWD=qwe1234*')
 
 app = Flask(__name__)
@@ -40,7 +42,22 @@ def convert_json(categories):
         print(_json)
         data.append(_json)
     return data
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return 'hola'
     
+
+
+@app.route('/user/<username>')
+def show_user(username):
+    return 'user: %s' % username
+
+@app.route('/products/<int:id>')
+def get_products(id):
+    return str(id)
+       
 
 @app.route('/')
 def main():
