@@ -3,7 +3,7 @@ import pyodbc
 import json
 from flask import request
 
-conn = pyodbc.connect('DRIVER={PostgreSQL Unicode};SERVER=10.4.28.183;DATABASE=postgres;UID=postgres;PWD=qwe1234*')
+conn = pyodbc.connect('DRIVER={PostgreSQL Unicode};SERVER=10.4.28.183;DATABASE=postgres;UID=postgres;PWD=developer2020')
 
 app = Flask(__name__)
 
@@ -27,7 +27,6 @@ def get_children_categories(conn, id):
         }
         data_children.append(__json)    
     return data_children
-
 
 
 def convert_json(categories):
