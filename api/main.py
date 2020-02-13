@@ -47,8 +47,6 @@ def login():
     if request.method == 'GET':
         return 'hola'
     
-
-
 @app.route('/user/<username>')
 def show_user(username):
     return 'user: %s' % username
