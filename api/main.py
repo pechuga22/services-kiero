@@ -3,10 +3,11 @@ import pyodbc
 import json
 from flask import request
 
-conn = pyodbc.connect('DRIVER={PostgreSQL Unicode};SERVER=10.4.28.183;DATABASE=postgres;UID=postgres;PWD=developer2020')
+conn = pyodbc.connect('DRIVER={PostgreSQL Unicode};SERVER=172.17.0.3;DATABASE=postgres;UID=postgres;PWD=developer2020')
 
 app = Flask(__name__)
 
+@app.route('/get_categories')
 def get_daddys_categories(conn):
     cnxn = conn.cursor()
     cnxn.execute('select categoryid, name, banner  from categories c  where parentid isnull and categoryid != 50689')
@@ -41,20 +42,7 @@ def convert_json(categories):
         print(_json)
         data.append(_json)
     return data
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'GET':
-        return 'hola'
-    
-@app.route('/user/<username>')
-def show_user(username):
-    return 'user: %s' % username
-
-@app.route('/products/<int:id>')
-def get_products(id):
-    return str(id)
-       
+     
 
 @app.route('/')
 def main():
